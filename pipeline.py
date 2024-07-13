@@ -68,6 +68,6 @@ def main(number_of_conversations):
 
 
 if __name__ == "__main__":
-    # the number of simultaneous conversations you want to handle
+    # the number of simultaneous conversations to handle
     number_of_conversations = 3  
     main(number_of_conversations)
