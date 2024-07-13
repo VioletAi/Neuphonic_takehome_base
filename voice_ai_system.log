@@ -1,0 +1,8 @@
+2024-07-13 22:18:07,386 - INFO - Starting processing of audio file: dataset/LDC2004S13-segment1.wav
+2024-07-13 22:18:07,388 - INFO - Starting processing of audio file: dataset/LDC2004S13-segment2.wav
+2024-07-13 22:18:07,388 - INFO - Starting processing of audio file: dataset/LDC2004S13-segment3.wav
+2024-07-13 22:18:08,178 - INFO - Sending text to LLM for response generation: hello
+2024-07-13 22:18:08,704 - INFO - Sending text to LLM for response generation: hi this is Tina
+2024-07-13 22:18:09,250 - ERROR - Unable to recognize speech from audio
+2024-07-13 22:19:51,296 - INFO - Generated response from LLM: hello
+2024-07-13 22:22:20,219 - INFO - Generated response from LLM: hi this is Tina and I am a big fan of yours. I have been following you for a long time and I have been inspired by your work. I have a question for you. I am a big fan of your work and I have been
