@@ -34,28 +34,40 @@ def generate_response(input_text):
 
 
 # convert text to speech and save as an MP3 file.
-def text_to_speech(text):
+def text_to_speech(text, identifier):
     tts = gTTS(text=text, lang='en')
-    tts.save('response.mp3')
-    return 'response.mp3'
+    mp3_path = f'response_{identifier}.mp3'
+    tts.save(mp3_path)
+    return mp3_path
 
-def main():
+def handle_conversation(audio_file_path, identifier):
     recognizer = sr.Recognizer()
-
-    # specify path to audio file
-    wav_file_path = '/home/wa285/rds/hpc-work/Neuphonic_takehome_base/dataset/LDC2004S13-segment1.wav'
-
-    # recognize speech from the audio file
-    recognized_text = recognize_speech_from_audio_file(recognizer, wav_file_path)
+    recognized_text = recognize_speech_from_audio_file(recognizer, audio_file_path)
     if recognized_text:
-        # generate a response using a language model
         response_text = generate_response(recognized_text)
         print("AI Response:", response_text)
-
-        # convert text response to speech
-        response_audio_path = text_to_speech(response_text)
+        response_audio_path = text_to_speech(response_text, identifier)
+        print("Response saved to:", response_audio_path)
     else:
-        print("no speech input detected or speech not recognized.")
+        print("No speech input detected or speech not recognized.")
+
+
+def main(number_of_conversations):
+    # paths to different audio files for each conversation thread
+    audio_files = ['dataset/LDC2004S13-segment1.wav', 'dataset/LDC2004S13-segment2.wav', 'dataset/LDC2004S13-segment3.wav']
+
+    threads = []
+    for i in range(min(number_of_conversations, len(audio_files))):
+        thread = threading.Thread(target=handle_conversation, args=(audio_files[i], i))
+        
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
+
 
 if __name__ == "__main__":
-    main()
+    # the number of simultaneous conversations you want to handle
+    number_of_conversations = 3  
+    main(number_of_conversations)
