@@ -1,15 +1,14 @@
 import speech_recognition as sr
 from gtts import gTTS
-from pydub import AudioSegment
-from pydub.playback import play
+import threading
 
 import tensorflow as tf
 # forces tensorFlow to use only the cpu
 tf.config.set_visible_devices([], 'GPU')
+
 import os
 os.environ["TRANSFORMERS_CACHE"] = "/home/wa285/rds/hpc-work/Neuphonic_takehome_base/cache"
 from transformers import pipeline
-import torch
 
 # recognize speech from an audio file.
 def recognize_speech_from_audio_file(recognizer, audio_file_path):
