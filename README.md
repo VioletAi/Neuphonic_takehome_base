@@ -18,5 +18,5 @@ python pipline.py
 ```
 ## Usage
 
-1. Ensure you have an audio file (WAV format) ready to be processed. Specify the path to this file in the `main()` function of the `main.py` script.
+1. Ensure you have an audio file (WAV format) ready to be processed. Specify the path to this file in the `main()` function of the `pipeline.py` script.
 2. Execute the script. The system will process the audio file, generate a response, and output the result as an MP3 file.
