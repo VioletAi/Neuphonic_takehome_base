@@ -32,7 +32,7 @@ def setup_logging():
 
 setup_logging()
 
-# Setup logging
+# setup logging
 def setup_logging():
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - %(levelname)s - %(message)s',
