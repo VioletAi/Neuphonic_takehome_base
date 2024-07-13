@@ -57,9 +57,11 @@ def recognize_speech_from_audio_file(recognizer, audio_file_path):
         print("Recognized text:", text)
         return text
     except sr.RequestError as e:
+        ERROR_COUNTER.labels(type='speech_recognition').inc()
         logging.error(f"Speech recognition API unavailable, Error: {e}")
         return None
     except sr.UnknownValueError:
+        ERROR_COUNTER.labels(type='speech_recognition').inc()
         logging.error("Unable to recognize speech from audio")
         return None
 
@@ -74,6 +76,7 @@ def generate_response(input_text):
         logging.info(f"Generated response from LLM: {generated_text}")
         return generated_text
     except Exception as e:
+        ERROR_COUNTER.labels(type='llm_generation').inc()
         logging.error(f"Error in generating response from LLM: {e}")
         return None
 
